@@ -15,7 +15,7 @@ namespace DemoSemanticKernel
             string openAIApiKey = configuration["OpenAIApiKey"] ??
                 throw new InvalidOperationException($"OpenAI API key is missing in the configuration.");
 
-            var builder = Kernel.CreateBuilder();
+            IKernelBuilder builder = Kernel.CreateBuilder();
 
             builder.AddOpenAIChatCompletion(
                     "gpt-3.5-turbo",
