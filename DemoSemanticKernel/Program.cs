@@ -1,5 +1,8 @@
 ﻿using Microsoft.SemanticKernel;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using System.Reflection.Metadata;
 
 namespace DemoSemanticKernel
 {
@@ -16,21 +19,24 @@ namespace DemoSemanticKernel
                 throw new InvalidOperationException($"OpenAI API key is missing in the configuration.");
 
             IKernelBuilder builder = Kernel.CreateBuilder();
+            builder.Services.AddLogging(services => services.AddConsole().SetMinimumLevel(LogLevel.Trace));
 
-            builder.AddOpenAIChatCompletion(
-                    "gpt-3.5-turbo",
-                    openAIApiKey);
+            builder
+                .AddOpenAIChatCompletion("gpt-3.5-turbo", openAIApiKey);                
 
             Kernel kernel = builder.Build();
 
-            string text1 = @"
-                        1st Law of Thermodynamics - Energy cannot be created or destroyed.
-                        2nd Law of Thermodynamics - For a spontaneous process, the entropy of the universe increases.
-                        3rd Law of Thermodynamics - A perfect crystal at zero Kelvin has zero entropy.";
+            ChatApp chatApp = new(kernel);
+            await chatApp.StartAsync();
 
-            var summarizer = new Summarizer(kernel);
-            FunctionResult result = await summarizer.RunAsync(text1);
-            Console.WriteLine(result);
-        }
+            //string text1 = @"
+            //            1st Law of Thermodynamics - Energy cannot be created or destroyed.
+            //            2nd Law of Thermodynamics - For a spontaneous process, the entropy of the universe increases.
+            //            3rd Law of Thermodynamics - A perfect crystal at zero Kelvin has zero entropy.";
+
+            //var summarizer = new Summarizer(kernel);
+            //FunctionResult result = await summarizer.RunAsync(text1);
+            //Console.WriteLine(result);
+        }        
     }
 }
