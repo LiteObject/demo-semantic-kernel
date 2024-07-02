@@ -2,6 +2,8 @@
 using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.ChatCompletion;
 using Microsoft.SemanticKernel.Connectors.OpenAI;
+using Microsoft.SemanticKernel.Plugins.Web.Bing;
+using System.ComponentModel;
 using System.Net;
 
 namespace DemoSemanticKernel
@@ -22,6 +24,7 @@ namespace DemoSemanticKernel
             // Add a plugin (the LightsPlugin class is defined below)
             // _kernel.Plugins.AddFromType<LightsPlugin>("Lights");
             _kernel.ImportPluginFromType<ContactInfo>();
+            // _kernel.ImportPluginFromObject(new Microsoft.SemanticKernel.Plugins.Web.WebSearchEnginePlugin(new BingConnector("ApiKey")));
 
             // Enable planning
             OpenAIPromptExecutionSettings openAIPromptExecutionSettings = new()
@@ -59,7 +62,7 @@ namespace DemoSemanticKernel
 
         class ContactInfo
         {
-            [KernelFunction]
+            [KernelFunction, Description("Find email address for a given user.")]
             public string GetEmailAddress(string name)
             {
                 return name.ToLower() switch
