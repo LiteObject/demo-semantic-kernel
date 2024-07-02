@@ -29,7 +29,7 @@ namespace DemoSemanticKernel
                         3rd Law of Thermodynamics - A perfect crystal at zero Kelvin has zero entropy.";
 
             var summarizer = new Summarizer(kernel);
-            var result = await summarizer.RunAsync(text1);
+            FunctionResult result = await summarizer.RunAsync(text1);
             Console.WriteLine(result);
         }
     }

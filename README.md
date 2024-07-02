@@ -9,3 +9,6 @@
 
 ## Install the 'Microsoft.SemanticKernel' nuget package
     dotnet add package Microsoft.SemanticKernel
+
+## Links
+- [Semantic Kernel Sample Code](https://github.com/microsoft/semantic-kernel/tree/main/dotnet/samples)
