@@ -13,3 +13,4 @@
 ## Links
 - [Introduction to Semantic Kernel](https://learn.microsoft.com/en-us/semantic-kernel/overview/)
 - [Semantic Kernel Sample Code](https://github.com/microsoft/semantic-kernel/tree/main/dotnet/samples)
+- [OllamaSharp](https://github.com/awaescher/OllamaSharp)
