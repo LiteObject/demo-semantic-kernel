@@ -5,3 +5,5 @@
 /.vs
 /OllamaClient/bin/Debug/net9.0
 /OllamaClient/obj
+/EmailScanner/bin/Debug/net9.0
+/EmailScanner/obj
