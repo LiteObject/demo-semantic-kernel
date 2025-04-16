@@ -22,10 +22,11 @@ namespace OllamaClient
             //}
 
             var chat = new Chat(ollama);
+
             while (true)
             {
                 // prompt the user for input
-                Console.Write("User: ");
+                Console.Write($"[{DateTime.Now}] User: ");
 
                 var message = Console.ReadLine();
                 
@@ -39,17 +40,20 @@ namespace OllamaClient
 
                 // check for exit command
                 if (message.Equals("exit", StringComparison.OrdinalIgnoreCase) ||
-                    message.Equals("q", StringComparison.OrdinalIgnoreCase))
+                    message.Equals("q", StringComparison.OrdinalIgnoreCase) ||
+                    message.Equals("bye", StringComparison.OrdinalIgnoreCase))
                 {
                     break;
                 }
 
-                Console.Write("AI: ");
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.Write($"[{DateTime.Now}] AI: ");
                 await foreach (var answerToken in chat.SendAsync(message))
-                {
-                    Console.Write(answerToken);
+                {                    
+                    Console.Write(answerToken);                   
                 }
 
+                Console.ResetColor();
                 Console.WriteLine();
             }
             // messages including their roles and tool calls will automatically be tracked within the chat object
