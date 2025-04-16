@@ -7,3 +7,6 @@
 /OllamaClient/obj
 /EmailScanner/bin/Debug/net9.0
 /EmailScanner/obj
+/Demo.Microsoft.Extensions.AI/bin/Debug/net9.0
+/Demo.Microsoft.Extensions.AI/obj/Debug/net9.0
+/Demo.Microsoft.Extensions.AI/obj
