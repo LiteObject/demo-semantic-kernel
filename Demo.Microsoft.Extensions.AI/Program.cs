@@ -1,6 +1,4 @@
 ﻿using Microsoft.Extensions.AI;
-using OllamaSharp;
-using System;
 
 namespace Demo.Microsoft.Extensions.AI
 {
@@ -11,8 +9,10 @@ namespace Demo.Microsoft.Extensions.AI
             using IChatClient client =
                 new OllamaChatClient(new Uri("http://localhost:11434/"), "llama3.2:latest");
 
-            var response = await client.CompleteAsync("What is AI? Give me a short answer.");
-            Console.WriteLine(response.Message);
+            var response = await client.GetResponseAsync("What is AI? Give me a short answer.");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine(response.Text);
+            Console.ResetColor();
 
             // await GeneratedEmbeddings();
         }
